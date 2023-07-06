@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora do Dia</title>
+</head>
+<style>
+    body{
+        background-color:white;
+    }
+    main{
+        background-color: white;
+        width: 500px;
+        margin: auto;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.329) ;
+        border-radius: 10px;
+        
+    }
+
+    main >h1{
+        padding-left: 10px ;
+    }
+
+    header>h1{
+        color: white;
+        text-align: center;
+    }
+
+    footer{
+        color: white;
+        text-align: center;
+    }
+
+    div{
+        text-align: center;
+    }
+
+    img{
+        height: 200px;
+        width: 200px;
+        border-radius: 400px;
+    }
+
+    main>h1{
+        text-align: center;
+    }
+
+    #foto{
+        padding: 10px;
+    }
+
+    footer{
+        padding: 10px;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+
+
+</style>
+<body onload="carregar()">
+    <header>
+        <h1>Hora do Dia</h1>
+    </header>
+    <main>
+        <div id="text" style="font-size: 20px; padding: 10px;">
+            <h1>Testando</h1>
+        </div>
+        <div id="foto">
+            <img src="imagens/manha.jpg" alt="" id="imagem">
+        </div>
+    </main>
+    
+    <footer>
+        <a href="https://github.com/brunoSlacerda">BSilva</a>
+    </footer>
+
+    <script>
+        function carregar(){
+            var text = document.getElementById('text')
+            var img = document.getElementById('imagem')
+            var data = new Date()
+            var hora = data.getHours()
+            text.innerHTML = `Agora são ${hora} horas.`
+            if (hora >=0 && hora<12){
+                img.src = 'imagens/manha.jpg'
+                document.body.style.background = 'rgba(138, 216, 148, 0.774)'
+            }
+            else if (hora>12 && hora <18){
+                img.src = 'imagens/tarde.jpg'
+                document.body.style.background = 'rgba(219, 221, 104, 0.774)'
+            }
+            else{
+                img.src = 'imagens/night.jpg' 
+                document.body.style.background  ='rgba(11, 24, 85, 0.801)'
+            }
+        }
+    </script>
+</body>
+</html>

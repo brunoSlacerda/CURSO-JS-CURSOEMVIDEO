@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de idade</title>
+    <link rel="shortcut icon" href="imagens/icon.png" type="image/x-icon">
+</head>
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    header{
+        text-align: center;
+        color: white;
+        margin-bottom: 30px;
+    }
+
+    header > h1{
+        margin-top: 40px;
+        font-size: 25px;
+    }
+
+    body{
+        background-color: rgb(127, 194, 114);
+    }
+    main{
+        padding: 15px;
+        width: 400px;
+        height: 200px;
+        background-color: white;
+        border-radius: 10px;
+        margin: auto;
+    }
+    p{
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+    button{
+        margin-top: 12px;
+        font-size: 12px;
+        border-radius: 10px;
+        padding: 5px;
+    }
+    img{
+        margin-top: 50px;
+        width: 250px;
+        height: 250px;
+        border-radius: 150px;
+        
+    }
+    
+</style>
+<body id="body">
+    <header>
+        <h1>VERIFICADOR DE IDADE</h1>
+    </header>
+    <main id="main">
+        <div>
+         <p>Ano de Nascimento: <input type="number" id="ano"> </p>
+         Sexo: <input type="radio" name="radsex" id="M" checked>
+         <label for="M">Masculino</label>
+         <input type="radio" name="radsex" id="F">
+         <label for="F">Feminino</label>
+         <br>
+         <button onclick="clicou()">VERIFICAR</button>
+         <p style="margin-top: 10px;"></p>
+        </div>
+        <div id="info">
+            Preencha os DADOS para obter a RESPOSTA !
+            
+        </div>
+        
+    </main>
+
+    <script>
+        function clicou(){
+            var data = new Date()
+            var anoAtual = data.getFullYear()
+            var ano = document.getElementById('ano').value
+            var info = document.getElementById('info')
+            var main = document.getElementById('main')
+            var body = document.getElementById('body')
+            
+
+            if (ano<=0 || ano>anoAtual){
+                window.alert("Verifique novamente os dados!")
+            }
+            else{
+                var sex = document.getElementsByName('radsex')
+                var idade = anoAtual - ano
+                var genero = ''
+                var img = document.createElement('img')
+                img.setAttribute('id','foto')
+                
+
+                if (sex[0].checked){
+                    
+                    genero = 'Homem'
+                    if (idade<=4){
+                        img.setAttribute('src', 'imagens/bebe_menino.jpg')
+                    }
+                    else if (idade < 14){
+                        img.setAttribute('src','imagens/crianca_menino.jpg')
+                    }
+                    else if (idade < 50){
+                        img.setAttribute('src','imagens/jovem_menino.jpg')
+                    }
+                    else{
+                        img.setAttribute('src','imagens/idoso_homem.jpeg')
+                    }
+                    
+                    
+                }
+                else{
+                    genero = 'Mulher'
+                    if (idade<=4){
+                        img.setAttribute('src', 'imagens/bebe_menina.jpg')
+                    }
+                    else if (idade < 14){
+                        img.setAttribute('src', 'imagens/crianca_menina.jpeg')
+                    }
+                    else if (idade < 50){
+                        img.setAttribute('src', 'imagens/jovem_mulher.jpeg')
+                    }
+                    else{
+                        img.setAttribute('src', 'imagens/idosa_mulher.jpeg')
+                    }
+                    
+                }
+                info.style.textAlign = 'center'
+                info.innerHTML = `Detectamos um(a) ${genero} com ${idade} anos!`
+                info.appendChild(img)
+                main.style.height = '500px'
+                if (genero == 'Homem'){
+                    body.style.background = '#0FC2C0'
+                }
+                else{
+                    body.style.background = '#F2668B'
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>
